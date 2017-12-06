@@ -66,7 +66,12 @@ class MainViewController: UITableViewController {
         performSegue(withIdentifier: "toDetailVc", sender: indexPath)
     }
     
+    @IBAction func newPerson(_ sender: Any) {
+        performSegue(withIdentifier: "toDetailVc", sender: nil)
+    }
+    
     // MARK - navigation Method
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // 类型转换 as
         // swift中，除了string之外，绝大多数使用as 需要 ? / !
@@ -75,6 +80,26 @@ class MainViewController: UITableViewController {
         let vc = segue.destination as! DetailViewController
         if let index = sender as? IndexPath {
             vc.person = self.personList[index.row]
+            vc.completionCallBack = {
+                //刷新指定行
+                self.tableView.reloadRows(at: [index], with: .automatic)
+            }
+        }
+        else {
+            //新建个人记录
+            vc.completionCallBack = {
+                // 1.获取明细控制器的 person
+                guard let p = vc.person else {
+                    return;
+                }
+                // 2.插入到数组顶部
+                self.personList.insert(p, at: 0)
+                
+                // 3.刷新表格
+                self.tableView.reloadData()
+            }
         }
     }
+    
+    
 }

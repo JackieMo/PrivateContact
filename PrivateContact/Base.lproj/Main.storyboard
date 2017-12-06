@@ -49,7 +49,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="联系人列表" id="dlk-Fm-pt6">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8CB-3d-1Ur"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8CB-3d-1Ur">
+                            <connections>
+                                <action selector="newPerson:" destination="zLm-G5-gPx" id="tTu-tv-Jbq"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="9km-Ec-djR" kind="show" identifier="toDetailVc" id="YRZ-YA-oNk"/>
@@ -103,7 +107,7 @@
                                                     <rect key="frame" x="16" y="5" width="343" height="33.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
